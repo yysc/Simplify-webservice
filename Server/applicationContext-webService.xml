@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+	
+<beans default-autowire="autodetect">
+
+	<!-- 将这一句copy到工程目录下的applicationContext.xml中 
+		<import resource="applicationcontext-webService.xml" />
+	-->	
+		
+	<!-- 添加webservice的业务实现  Start -->
+		<bean id="BaseService" class="com.edatongtu.webservice.core.HelloWorld"/>
+	<!-- 添加webservice的业务实现  End -->
+	
+	
+	<!-- 固定配置 不用理会 Start -->		
+		<bean id="Face" class="com.edatongtu.webservice.Face">
+			<property name="LocalService" >
+				<ref bean="LocalService" />
+			</property>	
+		</bean>
+		
+		<bean id="LocalService" class="com.edatongtu.webservice.core.LocalService"/>
+
+	    <bean id="applicationContext"
+	        class="org.apache.axis2.extensions.spring.receivers.ApplicationContextHolder" />
+	<!-- 固定配置 不用理会 End -->
+			
+	   
+</beans >
